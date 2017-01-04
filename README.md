@@ -6,13 +6,12 @@ When the file was last edited
 
 Contact details - report bugs / issues
 
-licensing information
-Compatibility - browsers and devices
-How to run it and use it
-Support information
+- licensing information
+- Compatibility - browsers and devices
+- How to run it and use it
+- Support information
 
-What basic functionality is covered
-They want you to build a program that will emulate
+The basic functionality emulates
 - docking stations 
 - bikes 
 - infrastructure (repair staff)
