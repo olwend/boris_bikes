@@ -15,6 +15,13 @@ describe DockingStation do
     #   it { is_expected.to respond_to(:dock_bike).with(1).argument }
   end
 
+  #docking station has capacity = 20
+  it 'docking station has capacity of 20' do
+    station = DockingStation.new
+    expect(station.capacity).to eq(20)
+
+  end
+
   # Check if bike creates a new Bike Class and test working? method
   it 'releases working bikes' do
     bike = subject.release_bike
@@ -38,7 +45,7 @@ describe DockingStation do
   it 'raises error if docking station is full' do
     station = DockingStation.new
     bike = Bike.new
-    expect {station.dock_bike(bike)}.to raise_error
+    expect 20.times{station.dock_bike(bike)}.to raise_error(RuntimeError)
     'RuntimeError: Station is full'
   end
 
