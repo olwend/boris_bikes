@@ -32,20 +32,21 @@ describe DockingStation do
   it 'shows attribute docked if bike present' do
 
     station = DockingStation.new
-    expect(station.docked).to eq true
+    expect(station.docked_bikes).to eq 1
   end
 
   # Raise an error if there are no bikes
   it 'raises error if no bike present' do
     station = DockingStation.new
     station.release_bike
-    expect {station.release_bike}.to raise_error 'RuntimeError: No bikes available'
+    expect {station.release_bike}.to raise_error(RuntimeError)
+   'RuntimeError: No bikes available'
   end
 
   it 'raises error if docking station is full' do
     station = DockingStation.new
     bike = Bike.new
-    expect 20.times{station.dock_bike(bike)}.to raise_error(RuntimeError)
+    expect {station.dock_bike(bike)}.to raise_error(RuntimeError)
     'RuntimeError: Station is full'
   end
 
