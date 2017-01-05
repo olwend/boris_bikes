@@ -1,4 +1,4 @@
-rrequire_relative 'Bike'
+require_relative 'Bike'
 
 class DockingStation
 
@@ -15,7 +15,9 @@ class DockingStation
   end
 
   def dock_bike(x)
-  	@docked = true
+    #@capacity = 1
+    fail "RuntimeError: Station is full" if @docked
+    @docked = true
   end
 
 

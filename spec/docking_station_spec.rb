@@ -1,4 +1,4 @@
-require 'DockingStation'
+require 'docking_station'
 
 describe DockingStation do
   # One line test to check if release_bike exists
@@ -33,6 +33,13 @@ describe DockingStation do
     station = DockingStation.new
     station.release_bike
     expect {station.release_bike}.to raise_error 'RuntimeError: No bikes available'
+  end
+
+  it 'raises error if docking station is full' do
+    station = DockingStation.new
+    bike = Bike.new
+    expect {station.dock_bike(bike)}.to raise_error
+    'RuntimeError: Station is full'
   end
 
 end
