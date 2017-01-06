@@ -16,13 +16,20 @@ describe DockingStation do
   end
 
   #docking station has capacity = 20
-  # it 'docking station has capacity of 20' do
-  #   station = DockingStation.new
-  #   expect(station.capacity).to eq(20)
-  # end
+ it 'docking station takes capacity of 25' do
+     station = DockingStation.new(25)
+   expect(station.capacity).to eq(25)
+   end
+
+   #docking station uses DEFAULT_CAPACITY
+   it 'docking station uses default when no capacity passed in' do
+      station = DockingStation.new()
+    expect(station.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
+      end
 
     it 'raises an error when full' do
-    20.times { subject.dock_bike Bike.new }
+
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike Bike.new }
       expect { subject.dock_bike Bike.new }.to raise_error(RuntimeError)
       'RuntimeError: Station is full'
     end
