@@ -1,5 +1,6 @@
 require_relative 'Bike'
 
+
 class DockingStation
   DEFAULT_CAPACITY = 20
   attr_reader :bikes #add min function to stop bikes < 0
