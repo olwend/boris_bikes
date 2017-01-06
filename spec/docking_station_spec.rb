@@ -38,7 +38,7 @@ describe DockingStation do
   it 'releases working bikes' do
     bike = Bike.new
     subject.dock_bike(bike)
-    expect(bike).to respond_to :working?
+    expect(bike).to respond_to :working
   end
 
   # Return true if the bike is docked
