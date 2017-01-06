@@ -1,13 +1,17 @@
 require 'docking_station'
 
 describe DockingStation do
+  
+  let(:bike) { double :bike }
+  
   # One line test to check if release_bike exists
   it { is_expected.to respond_to :release_bike }
 
   #test to check that only working bike can be released
   it 'check that working = false bike is not released' do
-    bike = Bike.new
-    bike.report_broken
+    #bike = double(:bike)
+    allow(bike).to receive(:working).and_return(false)
+    #bike.report_broken
     subject.dock_bike(bike)
     expect {subject.release_bike}.to raise_error 'Bike is not working'
   end
@@ -34,22 +38,22 @@ describe DockingStation do
   describe '#release_bike' do
     # Raise an error if there are no bikes
     it 'raises error if no bike present' do
-      station = DockingStation.new
-      expect {station.release_bike}.to raise_error 'No bikes available'
+      expect {subject.release_bike}.to raise_error 'No bikes available'
     end
   end
   
   
   describe '#dock_bike' do
     it 'raises an error when full' do
-      DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike Bike.new }
-      expect { subject.dock_bike Bike.new }.to raise_error 'Station is full'
+      DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike double(:bike) }
+      expect { subject.dock_bike double(:bike) }.to raise_error 'Station is full'
     end
     
     #docking stations to accept returning bikes (broken or not)
     it 'bike can be docked if working or not' do
-      bike = Bike.new
-      bike.report_broken
+      #bike = double(:bike)
+      allow(bike).to receive(:working).and_return(false)
+      #bike.report_broken
       num = subject.bikes.count
       subject.dock_bike(bike)
       expect(subject.bikes.count).to eq num + 1
