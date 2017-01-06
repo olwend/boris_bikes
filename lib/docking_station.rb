@@ -2,27 +2,29 @@ require_relative 'Bike'
 
 class DockingStation
 
-  attr_reader :docked_bikes #add min function to stop bikes < 0
+  attr_reader :bikes #add min function to stop bikes < 0
   attr_reader :capacity
 
-  def initialize(docked_bikes = true)
-  	@docked_bikes = 1
+  def initialize()
+  	@bikes = []
     @capacity = 20
   end
 
   def release_bike
-    raise "RuntimeError: No bikes available" if !@docked_bikes
+    raise "RuntimeError: No bikes available" if !@bikes
     #@docked_bikes >= 0
     #@docked_bikes -= 1
-    @docked_bikes = false
+    @bikes = false
     Bike.new
   end
 
-  def dock_bike(x)
+  def dock_bike(bike)
     #@capacity = 1
-    fail "RuntimeError: Station is full" if @docked_bikes
-    #@capacity - @num_bikes == 0
-    @docked_bikes = true
+    fail "RuntimeError: Station is full" if @bikes.count >= @capacity
+    @bikes << bike #@capacity - @num_bikes == 0
+
+    #@bikes = true
+
     #@docked_bikes +=1
   end
 

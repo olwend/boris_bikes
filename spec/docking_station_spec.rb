@@ -15,12 +15,20 @@ describe DockingStation do
     #   it { is_expected.to respond_to(:dock_bike).with(1).argument }
   end
 
-  #docking station has capacity = 20
-  it 'docking station has capacity of 20' do
-    station = DockingStation.new
-    expect(station.capacity).to eq(20)
+  #check if 1 - 20 bikes can be docked_bikes
 
-  end
+  #check if 1-20 bikes can be released
+
+  #docking station has capacity = 20
+  # it 'docking station has capacity of 20' do
+  #   station = DockingStation.new
+  #   expect(station.capacity).to eq(20)
+  # end
+
+    it 'raises an error when full' do
+    20.times { subject.dock_bike Bike.new }
+      expect { subject.dock Bike.new }.to raise_error 'Docking station full'
+    end
 
   # Check if bike creates a new Bike Class and test working? method
   it 'releases working bikes' do
@@ -32,7 +40,7 @@ describe DockingStation do
   it 'shows attribute docked if bike present' do
 
     station = DockingStation.new
-    expect(station.docked_bikes).to eq 1
+    expect(station.bikes).to eq true
   end
 
   # Raise an error if there are no bikes
