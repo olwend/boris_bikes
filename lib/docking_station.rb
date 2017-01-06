@@ -11,11 +11,8 @@ class DockingStation
   end
 
   def release_bike
-    raise "RuntimeError: No bikes available" if !@bikes
-    #@docked_bikes >= 0
-    #@docked_bikes -= 1
-    @bikes = false
-    Bike.new
+    raise "RuntimeError: No bikes available" if @bikes.empty?
+    @bikes.pop
   end
 
   def dock_bike(bike)
