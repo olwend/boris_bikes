@@ -9,6 +9,26 @@ describe DockingStation do
     expect(DockingStation.new).to respond_to :release_bike
   end
 
+  #test to check that only working bike can be released
+  it 'check that working = false bike is not released' do
+
+    bike = Bike.new
+    bike.report_broken
+    station = DockingStation.new
+    station.dock_bike(bike)
+    expect{station.release_bike}.to raise_error(RuntimeError)
+    'RuntimeError bike is not working'
+  end
+#docking stations to accept returning bikes (broken or not)
+  it 'bike can be docked if working or not' do
+    bike = Bike.new
+    bike.report_broken
+    station = DockingStation.new
+    num = station.bikes.count
+    station.dock_bike(bike))
+    expect(subject.bikes.count). to_eq num + 1
+  end
+
   # check if bike can be docked
   it 'docks a bike' do
     expect(DockingStation.new).to respond_to :dock_bike

@@ -12,13 +12,14 @@ class DockingStation
 
   def release_bike
     raise "RuntimeError: No bikes available" if empty?
-    empty?
+    fail "RuntimeError bike is not working" if !@bikes.last.working
     @bikes.pop
   end
 
   def dock_bike(bike)
     #@capacity = 1
     fail "RuntimeError: Station is full" if full?
+
     @bikes << bike
 
     #@bikes = true
