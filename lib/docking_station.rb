@@ -17,6 +17,10 @@ class DockingStation
     @bikes.pop
   end
 
+  def release_maintenance
+    @bikes.pop
+  end
+
   def dock_bike(bike)
     #@capacity = 1
     raise "Station is full" if full?

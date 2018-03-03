@@ -1,9 +1,9 @@
 require 'docking_station'
 
 describe DockingStation do
-  
+
   let(:bike) { double :bike }
-  
+
   # One line test to check if release_bike exists
   it { is_expected.to respond_to :release_bike }
 
@@ -21,7 +21,7 @@ describe DockingStation do
     expect(DockingStation.new).to respond_to :dock_bike
     #   it { is_expected.to respond_to(:dock_bike).with(1).argument }
   end
-  
+
   #docking station has capacity = 20
   it 'docking station takes capacity of 25' do
     station = DockingStation.new(25)
@@ -33,22 +33,22 @@ describe DockingStation do
     station = DockingStation.new()
     expect(station.capacity).to eq(DockingStation::DEFAULT_CAPACITY)
   end
-  
-  
+
+
   describe '#release_bike' do
     # Raise an error if there are no bikes
     it 'raises error if no bike present' do
       expect {subject.release_bike}.to raise_error 'No bikes available'
     end
   end
-  
-  
+
+
   describe '#dock_bike' do
     it 'raises an error when full' do
       DockingStation::DEFAULT_CAPACITY.times { subject.dock_bike double(:bike) }
       expect { subject.dock_bike double(:bike) }.to raise_error 'Station is full'
     end
-    
+
     #docking stations to accept returning bikes (broken or not)
     it 'bike can be docked if working or not' do
       #bike = double(:bike)
